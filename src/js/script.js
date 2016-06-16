@@ -12,12 +12,13 @@
         console.log('Module slo initiated');
     }
 
-    var mainCtrl = slo.controller('mainCtrl', ['$scope', '$log', '$http', function($scope, $log, $http) {
+    var mainCtrl = slo.controller('mainCtrl', ['$scope', '$log', '$http','$localStorage', function($scope, $log, $http,$localStorage) {
         if (debug) {
             console.log('inside controller');
         }
         $scope.products = [];
         $scope.total = 0;
+
         $scope.addProduct = function() {
             var newProduct = {
                 name: '',
@@ -29,21 +30,27 @@
         //calculate total
         $scope.calculate = function() {
           $scope.total = 0;
-          console.log($scope.products);
 
             $scope.products.forEach(function(item){
               $scope.total += (item.quantity*item.price);
             });
+            $scope.saveProducts();
         };
-        $scope.pcsExport = function() {
-            if (debug) {
-                console.log('Export button clicked!');
+        $scope.loadProducts = function() {
+            var products = $localStorage.products;
+            if (typeof products !== 'undefined') {
+                $scope.products = $localStorage.products;
             }
-
-            var pName = (typeof $scope.pName !== 'undefined' ? $scope.pName : 'Plugin Name');
-
-
-
+        };
+        $scope.loadProducts();
+        
+        $scope.clearProducts = function(){
+          $scope.products = [];
+          $localStorage.products = [];
+        };
+        $scope.saveProducts = function(){
+          $localStorage.products = $scope.products;
+          console.log($localStorage.products);
         };
 
 
