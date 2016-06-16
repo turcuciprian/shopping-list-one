@@ -10,8 +10,8 @@
     <title>WordPress Plugin Code Start</title>
 </head>
 
-<body ng-app="wpPCS">
-    <div class="container" ng-controller="mainCtrl as mC">
+<body ng-app="slo">
+    <div class="container-fluid" ng-controller="mainCtrl as mC">
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
@@ -23,9 +23,36 @@
                           </p>
                         </div>
                         <div class="cotent">
-                          <div ng-repeat="product in products">
-                            <input type="button" name="name" value="{{product.name}}" />
+                          <div class="products">
+                              <div class="row">
+                                <div class="col-xs-8">
+                                  Product Name
+                                </div>
+                                <div class="col-xs-2">
+                                  Quantity
+                                </div>
+                                <div class="col-xs-2">
+                                  Price
+                                </div>
+                              </div>
+                            <div class="row" ng-repeat="product in products">
+                              <div class="col-xs-8">
+                                <input type="text" name="name" class="input-group form-control" value="{{product.name}}" />
+                              </div>
+                              <div class="col-xs-2">
+                                <input type="text" name="name" class="input-group form-control" ng-change="calculate()" value="{{product.quantity}}" />
+                              </div>
+                              <div class="col-xs-2">
+                                <input type="text" name="name" class="input-group form-control" ng-change="calculate()" value="{{product.price}}" />
+                              </div>
+                            </div>
                           </div>
+                          <p>
+                            <button type="button" class="button btn-primary" ng-click="addProduct();" name="button">Add Product</button>
+                          </p>
+                          <p>
+                            <h2>Total: {{total}}</h2>
+                          </p>
                         </div>
                     </div>
                 </div>
