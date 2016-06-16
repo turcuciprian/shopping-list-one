@@ -54,6 +54,11 @@
           $scope.products = [];
           $localStorage.products = [];
         };
+        //remove an item from the list
+        $scope.remove = function(item) {
+  var index = $scope.products.indexOf(item);
+  $scope.products.splice(index, 1);
+}
 
 
 
