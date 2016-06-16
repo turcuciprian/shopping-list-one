@@ -27,6 +27,11 @@
             };
             $scope.products.push(newProduct);
         };
+        //save product data to local storage
+        $scope.saveProducts = function(){
+          $localStorage.products = $scope.products;
+          console.log($localStorage.products);
+        };
         //calculate total
         $scope.calculate = function() {
           $scope.total = 0;
@@ -36,22 +41,21 @@
             });
             $scope.saveProducts();
         };
+        //load products data from local storage
         $scope.loadProducts = function() {
             var products = $localStorage.products;
             if (typeof products !== 'undefined') {
                 $scope.products = $localStorage.products;
             }
+            $scope.calculate();
         };
         $scope.loadProducts();
-        
+        //clear all products data
         $scope.clearProducts = function(){
           $scope.products = [];
           $localStorage.products = [];
         };
-        $scope.saveProducts = function(){
-          $localStorage.products = $scope.products;
-          console.log($localStorage.products);
-        };
+
 
 
     }]);
