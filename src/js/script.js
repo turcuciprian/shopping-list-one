@@ -30,7 +30,6 @@
         //save product data to local storage
         $scope.saveProducts = function(){
           $localStorage.products = $scope.products;
-          console.log($localStorage.products);
         };
         //calculate total
         $scope.calculate = function() {
