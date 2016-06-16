@@ -58,6 +58,7 @@
         $scope.remove = function(item) {
   var index = $scope.products.indexOf(item);
   $scope.products.splice(index, 1);
+  $scope.calculate();
 }
 
 
