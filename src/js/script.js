@@ -53,6 +53,7 @@
         $scope.clearProducts = function(){
           $scope.products = [];
           $localStorage.products = [];
+          $scope.total = 0;
         };
         //remove an item from the list
         $scope.remove = function(item) {
